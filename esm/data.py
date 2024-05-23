@@ -40,7 +40,8 @@ class FastaBatchedDataset(object):
             for line_idx, line in enumerate(infile):
                 if line.startswith(">"):  # label line
                     _flush_current_seq()
-                    line = line[1:].strip()
+                    # Changed for NCBI datasets format
+                    line = line[1:].strip().split(" ")[0]
                     if len(line) > 0:
                         cur_seq_label = line
                     else:
